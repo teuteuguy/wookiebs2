@@ -18,7 +18,7 @@ wookieServices.factory('shubacca', function($http) {
 	return {
 		getAllSHUs: function() {
 			
-			var url = "http://api.shubacca.com/shu?consumer_key=4a8e628392a504eb746c37e1b0044f0f&sort=id,desc";
+			var url = "http://api.shubacca.com/shu?consumer_key=4a8e628392a504eb746c37e1b0044f0f&sort=id,desc&limit=100";
 			
 			return $http.get(url);
 
