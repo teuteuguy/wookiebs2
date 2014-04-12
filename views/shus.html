@@ -1,72 +1,76 @@
 <div class="list-group">
 
-    <div
-    ng-repeat="shu in shus | filter:query | orderBy:orderProp"
-    ng-if=" shu.virtual != 1 && shu.statusLoaded == true "
-    class="list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'list-group-item-danger' }}"
-    ng-click="showcollapsed = 1 - showcollapsed"
-    ng-init="showcollapsed = 0"
-    ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
+	<div 
+	ng-repeat="shu in shus | filter:query | orderBy:orderProp"
+    ng-if=" shu.virtual != 1 "
     >
-        {{ shu.description }}
-        <span
-        class="badge {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'badge-important' }}"
-        >
-        	{{ shu.last_known_status_datetime | convertDateStrToAgo }}
-    	</span>
-        <div>
-	        <div
-	        class="progress"
-	        >
-				<div
-				class="progress-bar {{ shu.status.fuel_battery_state | progressBarStrict | progressBarColor }} tiny-font"
-				role="progressbar"
-				aria-valuenow="{{ shu.status.fuel_battery_state | progressBarStrict }}"
-				aria-valuemin="0"
-				aria-valuemax="100"
-				style="width: {{ shu.status.fuel_battery_state | progressBarStrict }}%">
-				</div>
-			</div>
-			<div
-			class="row"
-			ng-show="shu.status.trip_ongoing"
-			>
-				<div
-				class="col-xs-4 col-sm-4 col-md-4 tiny-font"
-				>
-					On-a-trip ezLink:
-				</div>
-				<div
-				class="col-xs-8 col-sm-8 col-md-8 value-div tiny-font text-right"
-				>
-					<strong>
-						{{ shu.status.booking_ezlink_can }}
-					</strong>
-				</div>
-			</div>
 
-			<div
-			class="row"
-			ng-show="shu.config.booking_ezlink_can"
-			>
-				<div
-				class="col-xs-4 col-sm-4 col-md-4 tiny-font"
-				>
-					Config:
+	    <div
+		class="list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'list-group-item-danger' }}"
+		ng-click="showcollapsed = 1 - showcollapsed"
+		ng-init="showcollapsed = 0"
+		ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
+		>
+	        {{ shu.description }}
+	        <span
+	        class="badge {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'badge-important' }}"
+	        >
+	        	{{ shu.last_known_status_datetime | convertDateStrToAgo }}
+	    	</span>
+	        <div>
+		        <div
+		        class="progress"
+		        >
+					<div
+					class="progress-bar {{ shu.status.fuel_battery_state | progressBarStrict | progressBarColor }} tiny-font"
+					role="progressbar"
+					aria-valuenow="{{ shu.status.fuel_battery_state | progressBarStrict }}"
+					aria-valuemin="0"
+					aria-valuemax="100"
+					style="width: {{ shu.status.fuel_battery_state | progressBarStrict }}%">
+					</div>
 				</div>
 				<div
-				class="col-xs-8 col-sm-8 col-md-8 value-div tiny-font text-right"
+				class="row"
+				ng-show="shu.status.trip_ongoing"
 				>
-					<strong>
-						{{ shu.config.booking_customer_firstname }} {{ shu.config.booking_customer_lastname }} {{ shu.config.booking_ezlink_can }}
-					</strong>
+					<div
+					class="col-xs-4 col-sm-4 col-md-4 tiny-font"
+					>
+						On-a-trip ezLink:
+					</div>
+					<div
+					class="col-xs-8 col-sm-8 col-md-8 value-div tiny-font text-right"
+					>
+						<strong>
+							{{ shu.status.booking_ezlink_can }}
+						</strong>
+					</div>
+				</div>
+
+				<div
+				class="row"
+				ng-show="shu.config.booking_ezlink_can"
+				>
+					<div
+					class="col-xs-4 col-sm-4 col-md-4 tiny-font"
+					>
+						Config:
+					</div>
+					<div
+					class="col-xs-8 col-sm-8 col-md-8 value-div tiny-font text-right"
+					>
+						<strong>
+							{{ shu.config.booking_customer_firstname }} {{ shu.config.booking_customer_lastname }} {{ shu.config.booking_ezlink_can }}
+						</strong>
+					</div>
 				</div>
 			</div>
 		</div>
-        <div
-        class="animate-show"
-        ng-show="showcollapsed"
-        >
+		<div
+		class="animate-show list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'list-group-item-danger' }}"
+		ng-show="showcollapsed"
+		>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-xs-4 col-sm-4 col-md-4 tiny-font">
@@ -114,5 +118,5 @@
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </div>
