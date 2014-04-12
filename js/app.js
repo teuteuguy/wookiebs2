@@ -4,6 +4,7 @@
 var myApp = angular.module('wookiesApp', [
   'ngAnimate',
   'ngRoute',
+  'ngResource',
   'wookiesApp.filters',
   'wookiesApp.progressBarColorFilters',
   'wookiesApp.servicesDefault',
