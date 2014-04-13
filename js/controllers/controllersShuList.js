@@ -14,10 +14,10 @@ angular.module('wookiesApp.controllersShuList', []).controller('controllersShuLi
       $scope.shus.forEach( function(shu) {
         
 
-        shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
+        shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config','limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
 
           //console.log( shu.description );
-          //console.log( status );
+          console.log( status );
           if ( status[0] != null ) {
 
             shu.status = status[0];

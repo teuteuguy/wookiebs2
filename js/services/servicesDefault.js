@@ -17,8 +17,8 @@ wookieServices.value('utils', function() {
 wookieServices.factory('shubacca', ['$resource', function($resource) {
     
     return $resource('http://api.shubacca.com/shu/:shuId/:status', { shuId: '@shuId', status: '@status', 'consumer_key': '4a8e628392a504eb746c37e1b0044f0f', 'sort': 'id,desc' }, {
-    	getAllSHUs : { method : 'GET', isArray : true, cache : true },
-    	getSHUStatusWithConfig : { method : 'GET', isArray : true, cache : true }
+    	getAllSHUs : { method : 'GET', isArray : true, cache : false },
+    	getSHUStatusWithConfig : { method : 'GET', isArray : true, cache : false }
   	});
 
 }])
