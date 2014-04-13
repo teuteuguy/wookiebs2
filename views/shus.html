@@ -70,6 +70,7 @@
 		<div
 		class="animate-show list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'list-group-item-danger' }}"
 		ng-show="showcollapsed"
+		ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
 		>
 			<div class="panel-body">
 				<div class="row">
