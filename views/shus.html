@@ -2,7 +2,7 @@
 
 	<div 
 	ng-repeat="shu in shus | filter:query | orderBy:orderProp"
-    ng-if=" shu.virtual != 1 "
+    ng-if=" shu.virtual != 1 && shu.statusLoaded == true "
     >
 
 	    <div

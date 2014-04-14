@@ -9,6 +9,7 @@ var myApp = angular.module('wookiesApp', [
   'wookiesApp.filters',
   'wookiesApp.progressBarColorFilters',
   'wookiesApp.servicesDefault',
+  'wookiesApp.servicesMapping',
   'wookiesApp.directivesDefault',
   'wookiesApp.controllersShuList',
   'wookiesApp.controllersMap',

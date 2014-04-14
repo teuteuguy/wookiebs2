@@ -5,7 +5,7 @@
 angular.module('wookiesApp.controllersShuList', []).controller('controllersShuList', function($scope, shubacca, $resource) {
 
   $scope.getData = function( refresh ) {    
-    shubacca.getAllSHUs( { 'limit': 50, 'forceupdate': ( new Date().getTime() ) * refresh }, function ( shus ) {
+    var promise = shubacca.getAllSHUs( { 'limit': 50, 'forceupdate': ( new Date().getTime() ) * refresh }, function ( shus ) {
 
       $scope.shus = shus;
 
@@ -13,24 +13,30 @@ angular.module('wookiesApp.controllersShuList', []).controller('controllersShuLi
 
       $scope.shus.forEach( function(shu) {
         
+        shu.statusLoaded = false;
 
         shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config','limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
 
           //console.log( shu.description );
-          console.log( status );
+          //console.log( status );
           if ( status[0] != null ) {
 
             shu.status = status[0];
             shu.config = shu.status.config;
             delete shu.status.config;
 
+
           }
+
+          shu.statusLoaded = true;
 
         });
 
       });
     
     });
+
+    //promise.then(funtion(result){ console.log("here"); });
 
   }
 
