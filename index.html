@@ -20,8 +20,10 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
 
-  <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmeVXki7sC3S34I9CDqBkvd9UqFVKp8nE&amp;sensor=false"></script>-->
-  <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+  <script src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>
+  <script src='bower_components/underscore/underscore-min.js'></script>
+  <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 </head>
@@ -37,14 +39,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#/">Wookie bitches 2!</a>
+        <a class="navbar-brand" href="#/">Wookie bitches <span app-version></span>!</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <!--<li class="active"><a href="/map">Map</a></li> -->
-          <!-- <li><a href="#/map">MAP</a></li> -->
+          <li><a href="#/map">MAP</a></li>
           <li><a href="#/shus">SHUs</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
@@ -64,12 +65,11 @@
     </div><!-- /.container-fluid-->
   </nav>
 
-  <div ng-view></div>
- 
-  <div class="container">
-    <p class="text-center tiny-font">Wookie lovin' at <span app-version></span> !</p>
-  </div>
-
+  <div ng-view class="content-wrapper"></div>
+<!--       <div class="container">
+        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+      </div>
+ -->
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
@@ -82,6 +82,7 @@
   <script src="js/controllerMap.js"></script>-->
   
   <script src="js/controllers/controllersShuList.js"></script>
+  <script src="js/controllers/controllersMap.js"></script>
   
   <script src="js/filters/filtersDefault.js"></script>
   <script src="js/filters/filtersProgressBars.js"></script>

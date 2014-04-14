@@ -1,0 +1,25 @@
+<!--<map zoom="11" center="[1.3599573, 103.8183801]"></map>-->
+<!-- <map zoom="12" center="{{map.center}}" zoom-control="false" ></map> -->
+<!-- <map zoom="12" center="[1.31455315, 103.843994]" zoom-control="false" ></map> -->
+
+<google-map
+center="map.center"
+zoom="map.zoom"
+draggable='true'
+control="map.control"
+options="map.options"
+events="map.events"
+bounds="map.angularbounds"
+>
+
+	<!-- <markers> -->
+		<marker
+		ng-repeat="marker in map.markers"
+		coords="marker.coords"
+		icon="marker.icon"
+		>
+			<marker-label content="marker.title" anchor="22 0" class="marker-labels"/>
+		</marker>
+	<!-- </markers> -->
+
+</google-map>
