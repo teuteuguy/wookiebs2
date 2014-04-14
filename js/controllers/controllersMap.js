@@ -141,7 +141,7 @@ angular.module('wookiesApp.controllersMap', []).controller('controllersMap', fun
         "featureType": "transit",
         "stylers": [
             {
-                "visibility": "simplified"
+                "visibility": "on"
             }
         ]
     },
