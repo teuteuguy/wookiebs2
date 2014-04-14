@@ -1,0 +1,38 @@
+<div class="list-group">
+
+	<div 
+	ng-repeat="shu in shus | filter:query | orderBy:orderProp"
+    ng-if=" shu.virtual != 1 "
+    >
+    	<div
+    	class="list-group-item"
+		ng-class="{'list-group-item-success': shu.firmware_version == lastestfw, 'list-group-item-danger': shu.firmware_version != lastestfw }"
+    	>
+	    	<table width="100%">
+	    		<tr>
+	    			<td width="34%" class="" style="text-align:center;vertical-align:middle;">
+	    				{{ shu.description }}
+	    			</td>
+	    			<td width="33%" class="" style="text-align:center;vertical-align:middle;">
+	    				{{ shu.firmware_version_in_time }}
+	    			</td>
+	    			<td width="33%" class="" style="text-align:center;vertical-align:middle;">
+	    				<p
+				    	class="badge"
+				        ng-class="{'badge-success': shu.firmware_version == lastestfw, 'badge-important': shu.firmware_version != lastestfw }"
+				        >
+				        	{{ shu.firmware_version }} / {{ lastestfw }}
+				    	</p>
+	    			</td>
+	    		</tr>
+	    	</table>
+	    	<!-- {{ shu.description }} - {{ shu.firmware_version_in_time }}
+	    	<p
+	    	class="badge"
+	        ng-class="{'badge-success': shu.firmware_version == lastestfw, 'badge-important': shu.firmware_version != lastestfw }"
+	        >
+	        	{{ shu.firmware_version }} / {{ lastestfw }}
+	    	</p> -->
+		</div>
+	</div>
+</div>
