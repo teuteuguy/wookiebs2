@@ -7,7 +7,7 @@
 // In this case it is a simple value service.
 var wookieServices = angular.module('wookiesApp.servicesDefault', []);
 
-wookieServices.value('version', '0.49');
+wookieServices.value('version', '0.50');
 
 wookieServices.value('utils', function() {
 
@@ -21,7 +21,15 @@ wookieServices.factory('shubacca', ['$resource', function($resource) {
     	getSHUStatusWithConfig : { method : 'GET', isArray : true, cache : false }
   	});
 
-}])
+}]);
+
+wookieServices.factory('stats', ['$resource', function($resource) {
+    
+    return $resource('http://stats.shubacca.com/?json', {}, {
+    	getAll : { method : 'GET', isArray : false, cache : false },
+  	});
+
+}]);
 
 wookieServices.factory('shubacca_old', function($http) {
 

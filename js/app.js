@@ -11,11 +11,13 @@ var myApp = angular.module('wookiesApp', [
   'wookiesApp.servicesDefault',
   'wookiesApp.directivesDefault',
   'wookiesApp.controllersShuList',
-  'wookiesApp.controllersMap'
+  'wookiesApp.controllersMap',
+  'wookiesApp.controllersStats',
 ]);
 
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/map', {templateUrl: 'views/map.html', controller: 'controllersMap'});
   $routeProvider.when('/shus', {templateUrl: 'views/shus.html', controller: 'controllersShuList'});
+  $routeProvider.when('/stats', {templateUrl: 'views/stats.html', controller: 'controllersStats'});
   $routeProvider.otherwise({redirectTo: '/shus'});
 });

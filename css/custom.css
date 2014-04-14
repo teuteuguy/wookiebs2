@@ -87,3 +87,27 @@ body {
 	height: 100%;
 	width: 100%;
 }
+
+.stats {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	margin: 0;
+	vertical-align: top;
+}
+.stats-title {
+	color: #f68b1f;
+	font-size: 2rem;
+}
+.stats-now {
+	color: #5385c5;
+	font-size: 4rem;
+}
+.stats-before {
+	color: #ddd;
+	font-size: 3rem;
+}
+.stat-item {
+	margin-bottom: 10px;
+	border-top-color: #ddd;
+	border-top-style: solid;
+	border-top-width: 1px; 
+}
