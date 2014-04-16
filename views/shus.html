@@ -13,7 +13,7 @@
 		>
 			<table width="100%">
 				<tr >
-					<td class="text-left">
+					<td width="35%" class="text-left">
 						<span
 				        class="label label-danger"
 				        ng-class="shu.latemotor == false ? 'hidden' : ''"
@@ -22,17 +22,20 @@
 				    	</span>
 						{{ shu.description }}
 					</td>
-					<td class="text-right">					
+					<td width="30%" class="text-center tiny-font">
+						Last used {{shu.interval_last_known_motor_on_datetime  | intervalToAgo }}
+					</td>
+					<td width="35%" class="text-right">					
 				        <span
-				        class="label text-right"
-				        ng-class="shu.latecheckin ? 'label-danger' : shu.lategps ? 'label-default' : 'label-default'"
+				        class="text-right tiny-font"
+				        ng-class="shu.latecheckin ? 'label label-danger' : shu.lategps ? '' : ''"
 				        >
 				        	{{ shu.last_known_status_datetime | convertDateStrToAgo }} / {{ shu.last_known_gps_datetime | convertDateStrToAgo }}
 				    	</span>
 	    			</td>
 	    		</tr>
 	    		<tr>
-	    			<td colspan=2>
+	    			<td colspan=3>
 	    				<div
 				        class="progress"
 				        style="margin-top:5px;"
