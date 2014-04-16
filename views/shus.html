@@ -11,25 +11,45 @@
 		ng-init="showcollapsed = 0"
 		ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
 		>
-	        {{ shu.description }}
-	        <span
-	        class="badge {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'badge-important' }}"
-	        >
-	        	{{ shu.last_known_status_datetime | convertDateStrToAgo }}
-	    	</span>
-	        <div>
-		        <div
-		        class="progress"
-		        >
-					<div
-					class="progress-bar {{ shu.status.fuel_battery_state | progressBarStrict | progressBarColor }} tiny-font"
-					role="progressbar"
-					aria-valuenow="{{ shu.status.fuel_battery_state | progressBarStrict }}"
-					aria-valuemin="0"
-					aria-valuemax="100"
-					style="width: {{ shu.status.fuel_battery_state | progressBarStrict }}%">
-					</div>
-				</div>
+			<table width="100%">
+				<tr >
+					<td class="text-left">
+						<span
+				        class="label label-danger"
+				        ng-class="shu.latemotor == false ? 'hidden' : ''"
+				        >
+				        	Warning: Been {{shu.interval_last_known_motor_on_datetime  | intervalToAgo }} hours.
+				    	</span>
+						{{ shu.description }}
+					</td>
+					<td class="text-right">					
+				        <span
+				        class="label text-right"
+				        ng-class="shu.latecheckin ? 'label-danger' : shu.lategps ? 'label-warning' : 'label-default'"
+				        >
+				        	{{ shu.last_known_status_datetime | convertDateStrToAgo }} / {{ shu.last_known_gps_datetime | convertDateStrToAgo }}
+				    	</span>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td colspan=2>
+	    				<div
+				        class="progress"
+				        style="margin-top:5px;"
+				        >
+							<div
+							class="progress-bar {{ shu.status.fuel_battery_state | progressBarStrict | progressBarColor }} tiny-font"
+							role="progressbar"
+							aria-valuenow="{{ shu.status.fuel_battery_state | progressBarStrict }}"
+							aria-valuemin="0"
+							aria-valuemax="100"
+							style="width: {{ shu.status.fuel_battery_state | progressBarStrict }}%">
+							</div>
+						</div>
+	    			</td>
+	    		</tr>
+	    	</table>
+	        <div>		        
 				<div
 				class="row"
 				ng-show="shu.status.trip_ongoing"

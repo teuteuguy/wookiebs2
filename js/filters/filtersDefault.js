@@ -82,6 +82,8 @@ wookieFilters.filter('convertDateStrToAgo', function() {
 			//console.log( interval );
 			//return 1;
 
+//			return intervalToAgo( interval );
+
 			if ( interval < 60 ) {
 		        return String( '00' + interval ).slice( -2 ) + " ago";
 		    } else if ( interval < 60 * 60 ) {
@@ -100,6 +102,32 @@ wookieFilters.filter('convertDateStrToAgo', function() {
 		    	var days = String( '00' + Math.floor(interval / (3600 * 24)) ).slice( -2 );
 		        return days + ":" + hours + ":" + mins + ":" + secs + " ago";
 		    }
+	}
+
+});
+
+wookieFilters.filter('intervalToAgo', function() {
+	//console.log( "Round 1" );
+	return function(interval) {
+
+		if ( interval < 60 ) {
+	        return String( '00' + interval ).slice( -2 ) + " ago";
+	    } else if ( interval < 60 * 60 ) {
+	    	var secs = String( '00' + interval % 60 ).slice( -2 );
+	    	var mins = String( '00' + Math.floor(interval / 60) ).slice( -2 );
+	        return mins + ":" + secs + " ago";
+	    } else if ( interval < 60 * 60 * 24 ) {
+	    	var secs = String( '00' + interval % 60 ).slice( -2 );
+	    	var mins = String( '00' + Math.floor(( interval % 3600 ) / 60) ).slice( -2 );
+	    	var hours = String( '00' + Math.floor(interval / 3600) ).slice( -2 );
+	        return hours + ":" + mins + ":" + secs + " ago";
+	    } else {
+	    	var secs = String( '00' + interval % 60 ).slice( -2 );
+	    	var mins = String( '00' + Math.floor(( interval % 3600 ) / 60) ).slice( -2 );
+	    	var hours = String( '00' + Math.floor((interval % (3600 * 24)) / 3600) ).slice( -2 );
+	    	var days = String( '00' + Math.floor(interval / (3600 * 24)) ).slice( -2 );
+	        return days + ":" + hours + ":" + mins + ":" + secs + " ago";
+	    }
 	}
 
 });

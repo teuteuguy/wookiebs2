@@ -13,7 +13,7 @@ angular.module('wookiesApp.controllersShuList', []).controller('controllersShuLi
 
       $scope.shus.forEach( function(shu) {
         
-        shu.statusLoaded = false;
+        shu.statusLoaded = false;      
 
         shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config','limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
 
@@ -25,6 +25,21 @@ angular.module('wookiesApp.controllersShuList', []).controller('controllersShuLi
             shu.config = shu.status.config;
             delete shu.status.config;
 
+            var now = new Date();
+            var nowUtc = new Date( now.getTime() + (now.getTimezoneOffset() * 60000));
+            var last_known_status_datetime = new Date( "" + shu.last_known_status_datetime.replace( /-/g,'/' ) );
+            var last_known_gps_datetime = new Date( "" + shu.last_known_gps_datetime.replace( /-/g,'/' ) );
+            var last_known_motor_on_datetime = new Date( "" + shu.last_known_gps_datetime.replace( /-/g,'/' ) );
+            
+            shu.interval_last_known_status_datetime = Math.floor( Math.abs( nowUtc - last_known_status_datetime ) / 1000 );
+            shu.interval_last_known_gps_datetime = Math.floor( Math.abs( last_known_status_datetime - last_known_gps_datetime ) / 1000 );
+            shu.interval_last_known_motor_on_datetime = Math.floor( Math.abs( nowUtc - last_known_motor_on_datetime ) / 1000 );
+
+            shu.latecheckin = ( shu.interval_last_known_status_datetime > shu.config.checkin_timeout * 1.05 );
+            shu.lategps = ( shu.interval_last_known_gps_datetime > 10 );
+            shu.latemotor = ( shu.interval_last_known_motor_on_datetime > 129600 );
+
+            console.log( shu.description, shu.lategps, shu.interval_last_known_gps_datetime , shu.interval_last_known_motor_on_datetime, shu.latemotor);
 
           }
 

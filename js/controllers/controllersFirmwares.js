@@ -12,7 +12,7 @@ angular.module('wookiesApp.controllersFirmwares', []).controller('controllersFir
 
       shus.forEach( function(shu) {
 
-        if ( $scope.lastestfw < shu.firmware_version ) {
+        if ( $scope.lastestfw < shu.firmware_version && shu.virtual != "1" ) {
           $scope.lastestfw = shu.firmware_version;
         }
 
