@@ -25,7 +25,7 @@
 					<td class="text-right">					
 				        <span
 				        class="label text-right"
-				        ng-class="shu.latecheckin ? 'label-danger' : shu.lategps ? 'label-warning' : 'label-default'"
+				        ng-class="shu.latecheckin ? 'label-danger' : shu.lategps ? 'label-default' : 'label-default'"
 				        >
 				        	{{ shu.last_known_status_datetime | convertDateStrToAgo }} / {{ shu.last_known_gps_datetime | convertDateStrToAgo }}
 				    	</span>
@@ -63,7 +63,7 @@
 					class="col-xs-8 col-sm-8 col-md-8 value-div tiny-font text-right"
 					>
 						<strong>
-							{{ shu.status.booking_ezlink_can }}
+							{{ shu.status.trip_ezlink_can }}
 						</strong>
 					</div>
 				</div>
