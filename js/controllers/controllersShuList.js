@@ -9,16 +9,14 @@ angular.module('wookiesApp.controllersShuList', []).controller('controllersShuLi
 
       $scope.shus = shus;
 
-//      console.log( shus );
-
       $scope.shus.forEach( function(shu) {
+
+        console.log(shu);
         
         shu.statusLoaded = false;      
 
-        shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config','limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
+        shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
 
-          //console.log( shu.description );
-          //console.log( status );
           if ( status[0] != null ) {
 
             shu.status = status[0];

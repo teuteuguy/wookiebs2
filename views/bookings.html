@@ -1,0 +1,32 @@
+<div class="list-group">
+	<div 
+	ng-repeat="booking in bookings"
+    >
+    	<div
+		class="list-group-item"
+		ng-class=" {'list-group-item-success': booking.trip_ongoing == '1' }"
+		>
+			<table width="100%">
+				<tr>
+					<td class="text-left" width="50%">
+						{{ booking.book_start }}
+					</td>
+					<td class="text-right" width="50%">
+						{{ booking.shu.description }}
+    				</td>
+    			</tr>
+    			<tr>
+					<td class="text-left" width="50%" style="font-size: 1.2rem;">
+						{{ booking.first_name }} {{ booking.last_name }}
+					</td>
+					<td class="text-right" width="50%">
+						<span ng-class=" ! booking.loaded || booking.shu.status.trip_ongoing == '1' ? 'hidden' : '' ">in {{ booking.bookingTimeFromNow | intervalToAgo }}</span>
+						<span ng-class=" booking.loaded ? 'hidden' : 'glyphicon glyphicon-refresh' "></span>
+    					<span ng-class=" booking.configloadedinshu ? 'glyphicon glyphicon-ok' : 'hidden' "></span>
+    					<span ng-class=" booking.loaded && ! booking.configloadedinshu ? 'glyphicon glyphicon-minus' : 'hidden' "></span>
+    				</td>
+    			</tr>
+    		</table>
+		</div>
+	</div>
+</div>

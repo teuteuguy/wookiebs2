@@ -2,34 +2,34 @@
 
 /* Controllers */
 
-angular.module('wookiesApp.controllersStats', []).controller('controllersStats', function($scope, stats) {
+angular.module('wookiesApp.controllersStats', []).controller('controllersStats', function($scope, cakePHP) {
 
   $scope.stats = {};
 
-  $scope.parseStats = function( stats ) {
+  $scope.parseStats = function( s ) {
 
-    console.log(stats);
-    if ( stats.signups_last7days != null ) {
-      $scope.stats.s1 = { "title": "signups", "now": stats.signups_last7days, "before": stats.signups_last7days_before };
+    console.log(s);
+    if ( s.signups_last7days != null ) {
+      $scope.stats.s1 = { "title": "signups", "now": s.signups_last7days, "before": s.signups_last7days_before };
     }
-    if ( stats.trips_last7days != null ) {
-      $scope.stats.s2 = { "title": "trips",  "now": stats.trips_last7days, "before": stats.trips_last7days_before };
+    if ( s.trips_last7days != null ) {
+      $scope.stats.s2 = { "title": "trips",  "now": s.trips_last7days, "before": s.trips_last7days_before };
     }
-    if ( stats.charges_last7days != null ) {
-      $scope.stats.s3 = { "title": "revenue",  "now": "$" + stats.charges_last7days, "before": "$" + stats.charges_last7days_before };
+    if ( s.charges_last7days != null ) {
+      $scope.stats.s3 = { "title": "revenue",  "now": "$" + s.charges_last7days, "before": "$" + s.charges_last7days_before };
     }
-    if ( stats.current_future_bookings != null ) {
-      $scope.stats.s4 = { "title": "bookings",  "now": stats.current_future_bookings, "before": "-" };
+    if ( s.current_future_bookings != null ) {
+      $scope.stats.s4 = { "title": "bookings",  "now": s.current_future_bookings, "before": "-" };
     }
 
   }
 
   $scope.GetStats = function() {
 
-    stats.getAll( {}, function ( stats ) {
+    cakePHP.getStats( { 'json': '' }, function ( s ) {
 
       //console.log( stats );
-      $scope.parseStats( stats );
+      $scope.parseStats( s );
 
       //$scope.stats = stats;
 
