@@ -18,10 +18,10 @@
 	    			</td>
 	    			<td width="33%" class="" style="text-align:center;vertical-align:middle;">
 	    				<p
-				    	class="badge"
-				        ng-class="{'badge-success': shu.firmware_version == lastestfw, 'badge-important': shu.firmware_version != lastestfw }"
+				    	class="label"
+				        ng-class=" shu.firmware_version == lastestfw ? 'hidden' : shu.firmware_version < lastestfw ? 'label-danger' : 'label-primary' "
 				        >
-				        	{{ shu.firmware_version }} / {{ lastestfw }}
+				        	{{ shu.time_since_lastestfw | intervalToAgo }}
 				    	</p>
 	    			</td>
 	    		</tr>

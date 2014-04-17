@@ -34,7 +34,7 @@ angular.module('wookiesApp.controllersShuList', []).controller('controllersShuLi
               shu.interval_last_known_motor_on_datetime = Math.floor( Math.abs( nowUtc - last_known_motor_on_datetime ) / 1000 );
               shu.latemotor = ( shu.interval_last_known_motor_on_datetime > 129600 );
             } else {
-              shu.interval_last_known_motor_on_datetime = 0;
+              shu.interval_last_known_motor_on_datetime = 120000; //0;
               shu.latemotor = false;
             }
             
