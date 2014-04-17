@@ -39,11 +39,14 @@ angular.module('wookiesApp.controllersBookings', []).controller('controllersBook
 	        				shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 1 }, function( status ) {
 	        					
 	        					if ( booking.can_number == status[0].config.booking_ezlink_can ) {
-
 	        						booking.configloadedinshu = true;
-	        						booking.trip_ongoing = status[0].trip_ongoing;
-
+	        						//booking.trip_ongoing = status[0].trip_ongoing;
 	        					}
+
+	        					if ( booking.can_number == status[0].trip_ezlink_can ) {
+	        						booking.trip_ongoing = status[0].trip_ongoing;	
+	        					}
+
 	        					booking.loaded = true;
 	        					booking.shu.status = status[0];
 
