@@ -25,5 +25,5 @@ myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/stats', {templateUrl: 'views/stats.html', controller: 'controllersStats'});
   $routeProvider.when('/firmwares', {templateUrl: 'views/firmwares.html', controller: 'controllersFirmwares'});
   $routeProvider.when('/bookings', {templateUrl: 'views/bookings.html', controller: 'controllersBookings'});
-  $routeProvider.otherwise({redirectTo: '/shus'});
+  $routeProvider.otherwise({redirectTo: '/bookings'});
 });

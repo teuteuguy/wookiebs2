@@ -6,7 +6,7 @@ angular.module('wookiesApp.controllersBookings', []).controller('controllersBook
 
 	function bookingTimeFromNow( booking_time ) {
 		var now = new Date();
-        var nowUtc = new Date( now.getTime() + (now.getTimezoneOffset() * 60000));
+        var nowUtc = new Date( now.getTime() );//+ (now.getTimezoneOffset() * 60000));
         var temp = booking_time * 1000;
         var result = Math.floor( Math.abs( nowUtc - temp ) / 1000 );
         console.log( nowUtc, temp, result );
