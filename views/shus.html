@@ -13,7 +13,7 @@
 		>
 			<table width="100%">
 				<tr >
-					<td width="35%" class="text-left">
+					<td width="35%" class="text-left" rowspan = 2>
 						<span
 				        class="label label-danger"
 				        ng-class="shu.latemotor == false ? 'hidden' : ''"
@@ -22,13 +22,13 @@
 				    	</span>
 						{{ shu.description }}
 					</td>
-					<td width="30%" class="text-center tiny-font"
-					style="line-height:10px;"
-					ng-class="shu.interval_last_known_motor_on_datetime < 60*60*5 ? 'hidden' : '' "
-					>
-						Last used<br>
-						{{shu.interval_last_known_motor_on_datetime  | intervalToAgo }}
+					<td width="30%" class="text-right tiny-font">
+						<span ng-class="shu.interval_last_known_motor_on_datetime < 60*60*5 ? 'hidden' : '' ">
+							Last used {{shu.interval_last_known_motor_on_datetime  | intervalToAgo }}
+						</span>
 					</td>
+				</tr>
+				<tr>
 					<td width="35%" class="text-right">					
 				        <span
 				        class="text-right tiny-font"
