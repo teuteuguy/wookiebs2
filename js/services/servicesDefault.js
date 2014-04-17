@@ -7,7 +7,7 @@
 // In this case it is a simple value service.
 var wookieServices = angular.module('wookiesApp.servicesDefault', []);
 
-wookieServices.value('version', '0.52');
+wookieServices.value('version', '0.53');
 
 wookieServices.value('utils', function() {
 
