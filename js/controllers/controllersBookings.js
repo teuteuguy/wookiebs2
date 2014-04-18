@@ -29,6 +29,7 @@ angular.module('wookiesApp.controllersBookings', []).controller('controllersBook
 	        	b.bookings.forEach( function( booking ) {
 
 	        		booking.bookingTimeFromNow = bookingTimeFromNow( booking.book_start_timestamp );
+	        		booking.duration = booking.book_end_timestamp - booking.book_start_timestamp;
 
 		        	s.forEach( function( shu ) {
 

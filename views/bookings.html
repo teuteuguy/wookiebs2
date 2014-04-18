@@ -9,7 +9,7 @@
 			<table width="100%">
 				<tr>
 					<td class="text-left" width="50%">
-						{{ booking.book_start }}
+						{{ booking.book_start }} <span class="tiny-font" ng-class=" booking.loaded ? '' : 'hidden' ">for {{ booking.duration | intervalToAgo }}</span>
 					</td>
 					<td class="text-right" width="50%">
 						{{ booking.shu.description }}
