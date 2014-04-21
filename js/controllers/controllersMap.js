@@ -5,103 +5,103 @@
 angular.module('wookiesApp.controllersMap', []).controller('controllersMap', function($scope, shubacca, mapping, $interval) {
 
   var temp = [
-    {
-        "featureType": "landscape",
-        "stylers": [
-            {
-                "color": "#6c8080"
-            },
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "stylers": [
-            {
-                "color": "#d98080"
-            },
-            {
-                "hue": "#eeff00"
-            },
-            {
-                "lightness": 100
-            },
-            {
-                "weight": 1.5
-            }
-        ]
-    }
+    // {
+    //     "featureType": "landscape",
+    //     "stylers": [
+    //         {
+    //             "color": "#6c8080"
+    //         },
+    //         {
+    //             "visibility": "simplified"
+    //         }
+    //     ]
+    // },
+    // {
+    //     "featureType": "administrative",
+    //     "elementType": "labels.text",
+    //     "stylers": [
+    //         {
+    //             "visibility": "off"
+    //         }
+    //     ]
+    // },
+    // // {
+    // //     "featureType": "road",
+    // //     "stylers": [
+    // //         {
+    // //             "visibility": "simplified"
+    // //         }
+    // //     ]
+    // // },
+    // {
+    //     "featureType": "poi",
+    //     "stylers": [
+    //         {
+    //             "visibility": "off"
+    //         }
+    //     ]
+    // },
+    // // {
+    // //     "featureType": "road.highway",
+    // //     "elementType": "labels",
+    // //     "stylers": [
+    // //         {
+    // //             "visibility": "off"
+    // //         }
+    // //     ]
+    // // },
+    // // {
+    // //     "featureType": "road.highway",
+    // //     "elementType": "labels",
+    // //     "stylers": [
+    // //         {
+    // //             "visibility": "off"
+    // //         }
+    // //     ]
+    // // },
+    // // {
+    // //     "featureType": "road",
+    // //     "elementType": "labels.icon",
+    // //     "stylers": [
+    // //         {
+    // //             "visibility": "off"
+    // //         }
+    // //     ]
+    // // },
+    // {
+    //     "featureType": "transit",
+    //     "elementType": "labels",
+    //     "stylers": [
+    //         {
+    //             "visibility": "off"
+    //         }
+    //     ]
+    // },
+    // {
+    //     "elementType": "labels",
+    //     "stylers": [
+    //         {
+    //             "visibility": "off"
+    //         }
+    //     ]
+    // },
+    // // {
+    // //     "featureType": "road.highway",
+    // //     "stylers": [
+    // //         {
+    // //             "color": "#d98080"
+    // //         },
+    // //         {
+    // //             "hue": "#eeff00"
+    // //         },
+    // //         {
+    // //             "lightness": 100
+    // //         },
+    // //         {
+    // //             "weight": 1.5
+    // //         }
+    // //     ]
+    // // }
 ];
 
   var myMap = null;
