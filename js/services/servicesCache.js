@@ -129,6 +129,8 @@ wookiesFactory.factory( 'wookiesCacheRefresher', [ '$interval',  'wookiesCache',
 
 					}
 
+					shu.latemotor = false;
+
 					var status_array = shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 10, 'sort': 'id,desc' }, function() {
 
 						if ( status_array[0] != null ) {
