@@ -2,7 +2,7 @@
 
 /* Filters */
 
-var progressBarColorFilters = angular.module('wookiesApp.progressBarColorFilters', []);
+var progressBarColorFilters = angular.module('wookiesApp.filtersProgressBarColor', []);
 
 
 progressBarColorFilters.filter('progressBarColor', function() {

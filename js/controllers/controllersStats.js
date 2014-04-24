@@ -2,9 +2,14 @@
 
 /* Controllers */
 
-angular.module('wookiesApp.controllersStats', []).controller('controllersStats', function($scope, cakePHP) {
+angular.module('wookiesApp.controllersStats', []).controller( 'controllersStats', [ '$scope', 'cakePHP', function( $scope, cakePHP ) {
 
   $scope.stats = {};
+
+  // wookiesCacheRefresher.init( tickerFunction );
+  // function tickerFunction() {
+  //   console.log( 'wookiesApp.controllersStats', "tickerFunction" );
+  // }
 
   $scope.parseStats = function( s ) {
 
@@ -48,4 +53,6 @@ angular.module('wookiesApp.controllersStats', []).controller('controllersStats',
 // current_future_bookings: "3"
 // } );
 
-});
+
+}
+]);

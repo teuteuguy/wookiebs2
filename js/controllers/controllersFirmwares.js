@@ -6,7 +6,7 @@ angular.module('wookiesApp.controllersFirmwares', []).controller('controllersFir
 
   $scope.getData = function( refresh ) {
 
-    shubacca.getAllSHUs( { 'limit': 50, 'forceupdate': ( new Date().getTime() ) * refresh }, function ( shus ) {
+    shubacca.getAllSHUs( { 'limit': 50, 'sort': 'description,asc', 'forceupdate': ( new Date().getTime() ) * refresh }, function ( shus ) {
 
       $scope.lastestfw = 0;
 

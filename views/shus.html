@@ -2,11 +2,11 @@
 
 	<div 
 	ng-repeat="shu in shus | filter:query | orderBy:orderProp"
-    ng-if=" shu.virtual != 1 && shu.statusLoaded == true "
+    ng-if=" shu.virtual != 1 "
     >
 
 	    <div
-		class="list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'list-group-item-danger' }}"
+		class="list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.status.config.checkin_timeout:'list-group-item-danger' }}"
 		ng-click="showcollapsed = 1 - showcollapsed"
 		ng-init="showcollapsed = 0"
 		ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
@@ -72,7 +72,7 @@
 
 				<div
 				class="row"
-				ng-show="shu.config.booking_ezlink_can"
+				ng-show="shu.status.config.booking_ezlink_can"
 				>
 					<div
 					class="col-xs-4 col-sm-4 col-md-4 tiny-font"
@@ -83,14 +83,14 @@
 					class="col-xs-8 col-sm-8 col-md-8 value-div tiny-font text-right"
 					>
 						<strong>
-							{{ shu.config.booking_customer_firstname }} {{ shu.config.booking_customer_lastname }} {{ shu.config.booking_ezlink_can }}
+							{{ shu.status.config.booking_customer_firstname }} {{ shu.status.config.booking_customer_lastname }} {{ shu.status.config.booking_ezlink_can }}
 						</strong>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div
-		class="animate-show list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.config.checkin_timeout:'list-group-item-danger' }}"
+		class="animate-show list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.status.config.checkin_timeout:'list-group-item-danger' }}"
 		ng-show="showcollapsed"
 		ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
 		>
@@ -131,7 +131,7 @@
 						<strong>Config</strong>
 					</div>
 				</div>
-				<div class="row" ng-repeat="(key, value) in shu.config">
+				<div class="row" ng-repeat="(key, value) in shu.status.config">
 					<div class="col-xs-4 col-sm-4 col-md-4 tiny-font">
 						{{key}}
 					</div>

@@ -2,7 +2,8 @@
 <html lang="en" ng-app="wookiesApp">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title>Wookie WonderLand!</title>
 
@@ -17,11 +18,12 @@
 
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmeVXki7sC3S34I9CDqBkvd9UqFVKp8nE&sensor=false"></script>
-  <!--<script src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>-->
+  <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmeVXki7sC3S34I9CDqBkvd9UqFVKp8nE&sensor=false&libraries=geometry"></script>-->
+  <script src='http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry'></script>
   <script src='bower_components/underscore/underscore-min.js'></script>
   <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
@@ -30,11 +32,13 @@
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div ng-controller="controllersMenu" >
   <!-- <nav class="navbar navbar-default navbar-static-top" role="navigation" > -->
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> -->
+        <button type="button" class="navbar-toggle" ng-init="isCollapsed=true" ng-click="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -44,14 +48,16 @@
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse">
+      <!-- <div class="collapse navbar-collapse no-transition"> -->
+      <div class="nav-collapse" ng-class="isCollapsed ? 'collapse' : ''">
         <ul class="nav navbar-nav">
-          <li><a href="#/bookings">Bookings</a></li>
-          <li><a href="#/map">MAP</a></li>
-          <li><a href="#/shus">SHUs</a></li>
-          <li><a href="#/stats">Stats</a></li>
-          <li><a href="#/firmwares">FW</a></li>
+          <li><a ng-click="doCollapse('/bookings')">Bookings(*)</a></li>
+          <li><a ng-click="doCollapse('/map')">MAP</a></li>
+          <li><a ng-click="doCollapse('/shus')">SHUs</a></li>
+          <li><a ng-click="doCollapse('/stats')">Stats</a></li>
+          <li><a ng-click="doCollapse('/firmwares')">FW(*)</a></li>
           <li><a href="">v<span app-version></span></a></li>
+          <li><a ng-click="doCollapse('/tests')">tests</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -68,44 +74,44 @@
         </form>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid-->
+    </div>
   </nav>
 
   <div ng-view class="content-wrapper"></div>
-<!--       <div class="container">
-        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
-      </div>
- -->
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
 
   <script src="js/app.js"></script>
   
-  <script src="js/services/servicesDefault.js"></script>
-  <script src="js/services/servicesMapping.js"></script>
   <script src="js/services/servicesCakePHP.js"></script>
+  <script src="js/services/servicesCache.js"></script>
+  <script src="js/services/servicesDefault.js"></script>
+  <script src="js/services/servicesTiming.js"></script>
+  <script src="js/services/servicesMapping.js"></script>
 
+  <script src="js/filters/filtersDefault.js"></script>
+  <script src="js/filters/filtersTiming.js"></script>
+  <script src="js/filters/filtersProgressBars.js"></script>
+
+  <script src="js/controllers/controllersMenu.js"></script>
   <script src="js/controllers/controllersShuList.js"></script>
   <script src="js/controllers/controllersMap.js"></script>
   <script src="js/controllers/controllersStats.js"></script>
   <script src="js/controllers/controllersFirmwares.js"></script>
   <script src="js/controllers/controllersBookings.js"></script>
+  <script src="js/controllers/controllersTests.js"></script>
   
-  <script src="js/filters/filtersDefault.js"></script>
-  <script src="js/filters/filtersProgressBars.js"></script>
-
   <script src="js/directives/directivesDefault.js"></script>
   
-  <script src="bower_components/jquery/jquery.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
 
-    $(document).on('click','.navbar-collapse.in',function(e) {
-      if( $(e.target).is('a') ) {
-        $(this).collapse('hide');
-      }
-    });
+    // $(document).on('click','.navbar-collapse.in', function(e) {
+    //     console.log("Fired");
+    //   if( $(e.target).is('a') ) {
+    //     $(this).collapse('hide');
+    //   }
+    // });
 
   </script>
 

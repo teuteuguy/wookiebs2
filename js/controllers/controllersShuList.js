@@ -2,67 +2,79 @@
 
 /* Controllers */
 
-angular.module('wookiesApp.controllersShuList', []).controller('controllersShuList', function($scope, shubacca, $resource) {
+angular.module('wookiesApp.controllersShuList', []).controller('controllersShuList', [ '$scope', 'shubacca', '$resource', 'wookiesCacheRefresher', function($scope, shubacca, $resource, wookiesCacheRefresher) {
 
-  $scope.getData = function( refresh ) {    
-    var promise = shubacca.getAllSHUs( { 'limit': 50, 'forceupdate': ( new Date().getTime() ) * refresh }, function ( shus ) {
+  // $scope.getData = function( refresh ) {    
+  //   var promise = shubacca.getAllSHUs( { 'limit': 50, 'sort': 'description,asc', 'forceupdate': ( new Date().getTime() ) * refresh }, function ( shus ) {
 
-      $scope.shus = shus;
+  //     $scope.shus = shus;
 
-      $scope.shus.forEach( function(shu) {
+  //     $scope.shus.forEach( function(shu) {
 
-        console.log(shu);
+  //       console.log(shu);
         
-        shu.statusLoaded = false;      
+  //       shu.statusLoaded = false;      
 
-        shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 1, 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
+  //       shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 1, 'sort': 'id,desc', 'forceupdate': ( new Date().getTime() ) * refresh }, function( status ) {
 
-          if ( status[0] != null ) {
+  //         if ( status[0] != null ) {
 
-            shu.status = status[0];
-            shu.config = shu.status.config;
-            delete shu.status.config;
+  //           shu.status = status[0];
+  //           shu.config = shu.status.config;
+  //           delete shu.status.config;
 
-            var now = new Date();
-            var nowUtc = new Date( now.getTime() + (now.getTimezoneOffset() * 60000));
-            var last_known_status_datetime = new Date( "" + shu.last_known_status_datetime.replace( /-/g,'/' ) );
-            var last_known_gps_datetime = new Date( "" + shu.last_known_gps_datetime.replace( /-/g,'/' ) );
-            if ( shu.last_known_motor_on_datetime != null ) {
-              var last_known_motor_on_datetime = new Date( "" + shu.last_known_motor_on_datetime.replace( /-/g,'/' ) );
-              shu.interval_last_known_motor_on_datetime = Math.floor( Math.abs( nowUtc - last_known_motor_on_datetime ) / 1000 );
-              shu.latemotor = ( shu.interval_last_known_motor_on_datetime > 129600 );
-            } else {
-              shu.interval_last_known_motor_on_datetime = 120000; //0;
-              shu.latemotor = false;
-            }
+  //           var now = new Date();
+  //           var nowUtc = new Date( now.getTime() + (now.getTimezoneOffset() * 60000));
+  //           var last_known_status_datetime = new Date( "" + shu.last_known_status_datetime.replace( /-/g,'/' ) );
+  //           var last_known_gps_datetime = new Date( "" + shu.last_known_gps_datetime.replace( /-/g,'/' ) );
+  //           if ( shu.last_known_motor_on_datetime != null ) {
+  //             var last_known_motor_on_datetime = new Date( "" + shu.last_known_motor_on_datetime.replace( /-/g,'/' ) );
+  //             shu.interval_last_known_motor_on_datetime = Math.floor( Math.abs( nowUtc - last_known_motor_on_datetime ) / 1000 );
+  //             shu.latemotor = ( shu.interval_last_known_motor_on_datetime > 129600 );
+  //           } else {
+  //             shu.interval_last_known_motor_on_datetime = 120000; //0;
+  //             shu.latemotor = false;
+  //           }
             
-            shu.interval_last_known_status_datetime = Math.floor( Math.abs( nowUtc - last_known_status_datetime ) / 1000 );
-            shu.interval_last_known_gps_datetime = Math.floor( Math.abs( last_known_status_datetime - last_known_gps_datetime ) / 1000 );
+  //           shu.interval_last_known_status_datetime = Math.floor( Math.abs( nowUtc - last_known_status_datetime ) / 1000 );
+  //           shu.interval_last_known_gps_datetime = Math.floor( Math.abs( last_known_status_datetime - last_known_gps_datetime ) / 1000 );
 
-            shu.latecheckin = ( shu.interval_last_known_status_datetime > shu.config.checkin_timeout * 1.05 );
-            shu.lategps = ( shu.interval_last_known_gps_datetime > 10 );
+  //           shu.latecheckin = ( shu.interval_last_known_status_datetime > shu.config.checkin_timeout * 1.05 );
+  //           shu.lategps = ( shu.interval_last_known_gps_datetime > 10 );
 
-            console.log( shu.description, shu.lategps, shu.interval_last_known_gps_datetime , shu.interval_last_known_motor_on_datetime, shu.latemotor);
+  //           console.log( shu.description, shu.lategps, shu.interval_last_known_gps_datetime , shu.interval_last_known_motor_on_datetime, shu.latemotor);
 
-          }
+  //         }
 
-          shu.statusLoaded = true;
+  //         shu.statusLoaded = true;
 
-        });
+  //       });
 
-      });
+  //     });
     
-    });
+  //   });
 
-    //promise.then(funtion(result){ console.log("here"); });
+  //   //promise.then(funtion(result){ console.log("here"); });
 
-  }
+  // }
 
-  $scope.getData( false );
+  // $scope.getData( false );
+
+    var TAG = "wookiesApp.controllersShuList";  
+
+    console.log( TAG, "Start" );
+
+    $scope.tickerFunction = function( ) {
+      console.log( TAG, "tickerFunction" );
+    }
+
+    wookiesCacheRefresher.init( $scope );
+
 
   $scope.orderProp = 'description';
 
-});
+}
+]);
 
 
 

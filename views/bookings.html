@@ -20,7 +20,7 @@
 						{{ booking.first_name }} {{ booking.last_name }}
 					</td>
 					<td class="text-right" width="50%">
-						<span ng-class=" ! booking.loaded || booking.shu.status.trip_ongoing == '1' ? 'hidden' : '' ">in {{ booking.bookingTimeFromNow | intervalToAgo }}</span>
+						<span ng-class=" ! booking.loaded || booking.shu.status.trip_ongoing == '1' ? 'hidden' : '' ">{{ booking.bookingTimeFromNow | intervalToAgo }}</span>
 						<span ng-class=" booking.loaded ? 'hidden' : 'glyphicon glyphicon-refresh' "></span>
     					<span ng-class=" booking.configloadedinshu ? 'glyphicon glyphicon-ok' : 'hidden' "></span>
     					<span ng-class=" booking.loaded && ! booking.configloadedinshu ? 'glyphicon glyphicon-minus' : 'hidden' "></span>

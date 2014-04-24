@@ -3,23 +3,39 @@
 <!-- <map zoom="12" center="[1.31455315, 103.843994]" zoom-control="false" ></map> -->
 
 <google-map
-center="map.center"
-zoom="map.zoom"
+center="map.map.center"
+zoom="map.map.zoom"
 draggable='true'
-control="map.control"
-options="map.options"
-events="map.events"
-bounds="map.angularbounds"
+control="map.map.control"
+options="map.map.options"
+events="map.map.events"
+bounds="map.bounds"
 >
-
-	<!-- <markers> -->
+	
+	<div
+		ng-repeat="shu in shus"
+		ng-if=" shu.virtual != 1 "
+	>
+		<polyline ng-if=" shu.path.length >= 2 "
+		path='shu.path'
+	    stroke='{ color: "#5C89CA", weight: 3, opacity: 1.0 }'
+	    clickable='false'
+	    draggable='false'
+	    editable='false'
+	    geodesic='true'
+	    visible='true'>
+	    	<polyline-label content="shu.description" anchor="22 0" class="polyline-labels"/>
+		</polyline>
+	
+		<!-- <markers> -->
 		<marker
-		ng-repeat="marker in map.markers"
-		coords="marker.coords"
-		icon="marker.icon"
+		coords="shu.marker.coords"
+		icon="shu.marker.icon"
 		>
-			<marker-label content="marker.title" anchor="22 0" class="marker-labels"/>
+			<marker-label content="shu.marker.title" anchor="22 0" class="marker-labels"/>
 		</marker>
-	<!-- </markers> -->
+		<!-- </markers> -->
+
+	</div>
 
 </google-map>

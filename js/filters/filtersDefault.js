@@ -106,31 +106,31 @@ wookieFilters.filter('convertDateStrToAgo', function() {
 
 });
 
-wookieFilters.filter('intervalToAgo', function() {
-	//console.log( "Round 1" );
-	return function(interval) {
+// wookieFilters.filter('intervalToAgo', function() {
+// 	//console.log( "Round 1" );
+// 	return function(interval) {
 
-		if ( interval < 60 ) {
-	        return String( '00' + interval ).slice( -2 ) + "s";
-	    } else if ( interval < 60 * 60 ) {
-	    	var secs = String( '00' + interval % 60 ).slice( -2 );
-	    	var mins = String( '00' + Math.floor(interval / 60) ).slice( -2 );
-	    	return mins + "mins";
-	        //return mins + ":" + secs + "s";
-	    } else if ( interval < 60 * 60 * 24 ) {
-	    	var secs = String( '00' + interval % 60 ).slice( -2 );
-	    	var mins = String( '00' + Math.floor(( interval % 3600 ) / 60) ).slice( -2 );
-	    	var hours = String( '00' + Math.floor(interval / 3600) ).slice( -2 );
-	        return hours + "h" + mins;
-	        //return hours + ":" + mins + ":" + secs + "s";
-	    } else {
-	    	var secs = String( '00' + interval % 60 ).slice( -2 );
-	    	var mins = String( '00' + Math.floor(( interval % 3600 ) / 60) ).slice( -2 );
-	    	var hours = String( '00' + Math.floor((interval % (3600 * 24)) / 3600) ).slice( -2 );
-	    	var days = String( '00' + Math.floor(interval / (3600 * 24)) ).slice( -2 );
-	        return days + "day " + hours + "h" + mins;
-	        //return days + ":" + hours + ":" + mins + ":" + secs + "s";
-	    }
-	}
+// 		if ( interval < 60 ) {
+// 	        return String( '00' + interval ).slice( -2 ) + "s";
+// 	    } else if ( interval < 60 * 60 ) {
+// 	    	var secs = String( '00' + interval % 60 ).slice( -2 );
+// 	    	var mins = String( '00' + Math.floor(interval / 60) ).slice( -2 );
+// 	    	return mins + "mins";
+// 	        //return mins + ":" + secs + "s";
+// 	    } else if ( interval < 60 * 60 * 24 ) {
+// 	    	var secs = String( '00' + interval % 60 ).slice( -2 );
+// 	    	var mins = String( '00' + Math.floor(( interval % 3600 ) / 60) ).slice( -2 );
+// 	    	var hours = String( '00' + Math.floor(interval / 3600) ).slice( -2 );
+// 	        return hours + "h" + mins;
+// 	        //return hours + ":" + mins + ":" + secs + "s";
+// 	    } else {
+// 	    	var secs = String( '00' + interval % 60 ).slice( -2 );
+// 	    	var mins = String( '00' + Math.floor(( interval % 3600 ) / 60) ).slice( -2 );
+// 	    	var hours = String( '00' + Math.floor((interval % (3600 * 24)) / 3600) ).slice( -2 );
+// 	    	var days = String( '00' + Math.floor(interval / (3600 * 24)) ).slice( -2 );
+// 	        return days + "day " + hours + "h" + mins;
+// 	        //return days + ":" + hours + ":" + mins + ":" + secs + "s";
+// 	    }
+// 	}
 
-});
+// });

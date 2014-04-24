@@ -2,29 +2,34 @@
 
 /* Controllers */
 
-angular.module('wookiesApp.controllersBookings', []).controller('controllersBookings', function($scope, cakePHP, shubacca, $interval) {
+angular.module('wookiesApp.controllersBookings', []).controller( 'controllersBookings', ['$scope', 'cakePHP', 'shubacca', '$interval', 'utilsTiming', function( $scope, cakePHP, shubacca, $interval, utilsTiming ) {
 
 	function bookingTimeFromNow( booking_time ) {
-		var now = new Date();
-        var nowUtc = new Date( now.getTime() );//+ (now.getTimezoneOffset() * 60000));
-        var temp = booking_time * 1000;
-        var result = Math.floor( Math.abs( nowUtc - temp ) / 1000 );
-        console.log( nowUtc, temp, result );
-        return result;
+
+//		var now = new Date();
+//        var nowUtc = new Date( now.getTime() );//+ (now.getTimezoneOffset() * 60000));
+//        var temp = booking_time * 1000;
+//        var result = Math.floor( Math.abs( nowUtc - temp ) / 1000 );
+//        //console.log( nowUtc, temp, result );
+//        return result;
+        var result = utilsTiming.nbSecondsBetweenNowAnd( ( booking_time * 1000 + ( new Date().getTimezoneOffset() * 60000 ) ) / 1000 );
+        //console.log( result );
+
+		return result;
 	}
 
 
 	$scope.getBookings = function() {
 
 	    cakePHP.getBookings( { playground: 'playground', 'bookings': 'all' }, function ( b ) {
-	        console.log( b.bookings );
+	        //console.log( b.bookings );
 	        $scope.bookings = b.bookings;
 
 	        $scope.shus = null;
 
 	        var shus = null;
 
-	        shubacca.getAllSHUs( { 'limit': 50 }, function ( s ) {
+	        shubacca.getAllSHUs( { 'limit': 50, 'sort': 'description,asc' }, function ( s ) {
 
 	        	b.bookings.forEach( function( booking ) {
 
@@ -37,7 +42,7 @@ angular.module('wookiesApp.controllersBookings', []).controller('controllersBook
 	        				
 	        				booking.shu = shu;
 
-	        				shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 1 }, function( status ) {
+	        				shubacca.getSHUStatusWithConfig( { shuId: shu.id, status: 'status', 'with': 'config', 'limit': 1, 'sort': 'id,desc' }, function( status ) {
 	        					
 	        					if ( booking.can_number == status[0].config.booking_ezlink_can ) {
 	        						booking.configloadedinshu = true;
@@ -73,4 +78,5 @@ angular.module('wookiesApp.controllersBookings', []).controller('controllersBook
 
   	$scope.getBookings();
 
-});
+}
+]);

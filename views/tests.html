@@ -1,0 +1,57 @@
+<!-- <button
+ng-click='testFunction("blupblup")'>	
+	test
+</button> -->
+
+<div class="list-group">
+
+	<div 
+	ng-repeat="shu in shus | filter:query | orderBy:orderProp"
+    ng-if=" shu.virtual != 1 "
+    class="list-group-item {{ shu.last_known_status_datetime | ifIsLateVsTimeoutApplyClass:shu.status.config.checkin_timeout:'list-group-item-danger' }}"
+	ng-click="showcollapsed = 1 - showcollapsed"
+	ng-init="showcollapsed = 0"
+	ng-class="{'list-group-item-success': shu.status.trip_ongoing == '1' }"
+    >
+    	<table width="100%">
+			<tr >
+				<td width="35%" class="text-left">
+					<span
+			        class="label label-danger"
+			        ng-class="shu.latemotor == false ? '' : ''"
+			        >
+			        	Warning: Been {{shu.interval_last_known_motor_on_datetime  | intervalToAgo }} hours.
+			    	</span>
+					{{ shu.description }} {{ shu.status.timestamp }}
+				</td>
+				<td width="30%" class="text-right tiny-font">
+					<span ng-class="shu.interval_last_known_motor_on_datetime < 60*60*5 ? '' : '' ">
+						Last used {{shu.interval_last_known_motor_on_datetime  | intervalToAgo }}</span></br>
+			        <span
+			        class="text-right tiny-font"
+			        ng-class=" shu.latecheckin || shu.lategps ? shu.latecheckin ? 'label label-danger' : shu.lategps ? '' : '' : ''"
+			        >
+			        	{{ shu.last_known_status_datetime | convertDateStrToAgo }} / {{ shu.last_known_gps_datetime | convertDateStrToAgo }}
+			    	</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 >
+					<div
+			        class="progress"
+			        style="margin-top:3px;"
+			        >
+						<div
+						class="progress-bar {{ shu.status.fuel_battery_state | progressBarStrict | progressBarColor }} tiny-font"
+						role="progressbar"
+						aria-valuenow="{{ shu.status.fuel_battery_state | progressBarStrict }}"
+						aria-valuemin="0"
+						aria-valuemax="100"
+						style="width: {{ shu.status.fuel_battery_state | progressBarStrict }}%">
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
