@@ -261,13 +261,15 @@ wookiesFactory.factory( 'wookiesCacheRefresher', [ '$interval',  'wookiesCache',
 scope.map = {};
 				refresh( scope );
 
-				scope.$on('$destroy', function(e) {
-					console.log( TAG, "view is destroyed, clearing timer" );
-        			$interval.cancel( wookiesCache.get( 'timer' ) );
-        			wookiesCache.remove( 'timer' );
-        		});
+				// scope.$on('$destroy', function(e) {
+				// 	console.log( TAG, "view is destroyed, clearing timer" );
+    //     			$interval.cancel( wookiesCache.get( 'timer' ) );
+    //     			wookiesCache.remove( 'timer' );
+    //     		});
 
-				wookiesCache.put( 'timer', $interval( function( ) { refresh( scope ); }, 10000 ) );
+				if ( typeof wookiesCache.get( 'timer' ) === 'undefined' ) {
+					wookiesCache.put( 'timer', $interval( function( ) { refresh( scope ); }, 10000 ) );
+				}
 
 			},
 
