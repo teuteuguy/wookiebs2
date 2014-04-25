@@ -9,13 +9,13 @@ body {
 }
 
 .nav-tabs {
-    margin-bottom: 0px;
+    /*margin-bottom: 0px;*/
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .navbar {
-	margin-bottom: 0px;
+	/*margin-bottom: 0px;*/
 }
 
 
@@ -119,3 +119,5 @@ body {
   -o-transition: height 0;
   transition: height 0;
 }
+
+

@@ -25,8 +25,8 @@
   <script src="bower_components/angular-resource/angular-resource.min.js"></script>
   <script src="bower_components/angular-touch/angular-touch.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmeVXki7sC3S34I9CDqBkvd9UqFVKp8nE&amp;sensor=false&amp;libraries=geometry"></script>
-  <!-- // <script src='http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=geometry'></script> -->
+  <!-- // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmeVXki7sC3S34I9CDqBkvd9UqFVKp8nE&amp;sensor=false&amp;libraries=geometry"></script> -->
+  <script src='http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=geometry'></script>
   <script src='bower_components/underscore/underscore-min.js'></script>
   <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
@@ -34,31 +34,31 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div ng-controller="controllersMenu" >
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="controllersMenu">
+    <!-- <div  > -->
   <!-- <nav class="navbar navbar-default navbar-static-top" role="navigation" > -->
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> -->
-        <button type="button" class="navbar-toggle" ng-init="isCollapsed=true" ng-click="isCollapsed = !isCollapsed">
+        <button type="button" class="navbar-toggle pull-left" style="margin-left: 8px; margin-right: 8px;" ng-init="isCollapsed=true" ng-click="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Wookie WonderLand!</a>
+        <a class="navbar-brand pull-center" href="/">Wookie WonderLand!</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <!-- <div class="collapse navbar-collapse no-transition"> -->
       <div class="navbar-collapse" ng-class="isCollapsed ? 'collapse' : ''">
         <ul class="nav navbar-nav">
-          <li><a ng-click="doCollapse('/bookings')">Bookings(*)</a></li>
-          <li><a ng-click="doCollapse('/map')">MAP</a></li>
-          <li><a ng-click="doCollapse('/shus')">SHUs</a></li>
-          <li><a ng-click="doCollapse('/stats')">Stats</a></li>
-          <li><a ng-click="doCollapse('/firmwares')">FW(*)</a></li>
+          <li><a ng-click="doCollapse('/bookings')"><i class="glyphicon glyphicon-usd" style="font-size: 12px; margin-right:5px;"></i>Bookings(*)</a></li>
+          <li><a ng-click="doCollapse('/map')"><i class="glyphicon glyphicon-map-marker" style="font-size: 12px; margin-right:5px;"></i>MAP</a></li>
+          <li><a ng-click="doCollapse('/shus')"><i class="glyphicon glyphicon-tasks" style="font-size: 12px; margin-right:5px;"></i>SHUs</a></li>
+          <li><a ng-click="doCollapse('/stats')"><i class="glyphicon glyphicon-stats" style="font-size: 12px; margin-right:5px;"></i>Stats</a></li>
+          <li><a ng-click="doCollapse('/firmwares')"><i class="glyphicon glyphicon-barcode" style="font-size: 12px; margin-right:5px;"></i>FW(*)</a></li>
           <li><a href="">v<span app-version></span></a></li>
           <li><a ng-click="doCollapse('/tests')">tests</a></li>
         </ul>
@@ -77,7 +77,7 @@
         </form>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid-->
-    </div>
+    <!-- </div> -->
   </nav>
 
   <div ng-view class="content-wrapper"></div>
